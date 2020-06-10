@@ -1,17 +1,16 @@
 # Dockerfile to build Maven with Tomcat container
-# Based on Ubuntu:16.04
-FROM ubuntu:16.04
+FROM tomcat:latest
 RUN apt update
 RUN apt install -y git
 RUN apt install -y default-jdk
-RUN apt install -y tomcat8
 RUN apt install -y maven
 EXPOSE 8080
-RUN git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git /home/user/
-WORKDIR /home/user/boxfuse-sample-java-war-hello
+RUN git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git /home/user/box
+WORKDIR /home/user/box
 RUN mvn package
-ADD /home/user/boxfuse-sample-java-war-hello/hello-1.war /var/lib/tomcat8/webapps/
-RUN service tomcat8 restart
+Run cp /home/user/box/target/hello-1.0.war /usr/local/tomcat/webapps/
+CMD ["catalina.sh", "run"]
+
 
 
 
