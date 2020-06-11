@@ -1,0 +1,13 @@
+
+From ubuntu:14.04
+RUN apt-get update
+RUN apt-get install -y  git
+RUN git clone https://github.com/alekseysamodelkin/app.git
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q python-all python-pip
+RUN cp ./app/app/requirements.txt /tmp/
+RUN pip install -qr /tmp/requirements.txt
+RUN cp -r ./app/app/ /tmp/
+WORKDIR /tmp/app/app
+EXPOSE 5000
+CMD ["python", "app.py"]
+
