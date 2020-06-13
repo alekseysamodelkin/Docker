@@ -5,23 +5,24 @@ version: '2'
 services:
   maven:
 #    image: library/maven:3.6.3-openjdk-11
-    volumes:
-      - ./box/:/home/user/
-      - war:/home/user/box/target/hello-1.0.war
     build:
       context: .
       dockerfile: Dockerfile-mav
+    volumes:
+      - war:/home/user/box/target/
   tomcat8:
     volumes:
-      - war
+      - war:/usr/local/tomcat/apache-tomcat-7.0.104/webapps
+#    image: tomcat:7-jdk8-openjdk-slim
     build:
       context: .
-      dockerfile: Dockerfile-tom
+      dockerfile: Dockerfile-tom1
     links:
       - maven
     ports:
       - "8080:8080"
----
+volumes:
+ war:
 
 
 
