@@ -1,0 +1,3 @@
+From maven:latest
+WORKDIR /home/user/box \
+RUN mvn package

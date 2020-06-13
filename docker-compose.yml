@@ -1,0 +1,30 @@
+---
+#yml file from Samodelkin
+#two2 services
+version: '2'
+services:
+  maven:
+#    image: library/maven:3.6.3-openjdk-11
+    volumes:
+      - ./box/:/home/user/
+      - war:/home/user/box/target/hello-1.0.war
+    build:
+      context: .
+      dockerfile: Dockerfile-mav
+  tomcat8:
+    volumes:
+      - war
+    build:
+      context: .
+      dockerfile: Dockerfile-tom
+    links:
+      - maven
+    ports:
+      - "8080:8080"
+---
+
+
+
+
+
+
