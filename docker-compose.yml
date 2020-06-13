@@ -4,7 +4,7 @@
 version: '2'
 services:
   maven:
-#    image: library/maven:3.6.3-openjdk-11
+#    image: ubuntu 18.04
     build:
       context: .
       dockerfile: Dockerfile-mav
