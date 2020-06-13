@@ -1,3 +1,9 @@
-From maven:latest
-WORKDIR /home/user/box \
+#1 part
+From ubuntu:18.04
+RUN apt-get update && apt-get install -y \
+        git \
+        default-jdk \
+        maven
+RUN git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git ./home/user/box
+WORKDIR /home/user/box
 RUN mvn package
