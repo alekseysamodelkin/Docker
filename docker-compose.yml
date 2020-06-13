@@ -13,10 +13,10 @@ services:
   tomcat8:
     volumes:
       - war:/usr/local/tomcat/apache-tomcat-7.0.104/webapps
-#    image: tomcat:7-jdk8-openjdk-slim
+#    image: alpine
     build:
       context: .
-      dockerfile: Dockerfile-tom1
+      dockerfile: Dockerfile-tom
     links:
       - maven
     ports:
